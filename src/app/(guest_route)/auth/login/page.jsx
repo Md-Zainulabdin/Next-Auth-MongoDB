@@ -1,56 +1,50 @@
-import React from "react";
+"use client"
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import React, { useState } from "react";
 
-const SignInPage = () => {
-  const onRegister = async (formData) => {
-    "use server";
+const SignUpPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const onSignIn = async () => {
 
-    let name = formData.get("name");
-    let email = formData.get("email");
-    let password = formData.get("password");
+    console.log(email);
+
+    if (!email && !password) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
       });
 
-      if (res.ok) {
-       console.log("name", name);
-      }
+ console.log(res);
     } catch (error) {
-      console.log("error", error);
+      console.log("Error", error);
     }
   };
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center gap-8 bg-[#fafafa]">
-      <div className="title">
-        <h1 className="text-3xl font-semibold text-slate-800">
-          Create a <span className="text-indigo-400">Free Account</span>{" "}
+      <div className="title text-center">
+        <h1 className="text-4xl font-semibold text-slate-800">
+          Login to <span className="text-indigo-400">Grow With Ai</span>
         </h1>
+        <p className="text-md text-[#999] font-normal mt-2">
+          ~ Create impact with your knowledge <br /> #GrowWithAi{" "}
+        </p>
       </div>
       <form
-        action={onRegister}
+        action={onSignIn}
         className="flex flex-col gap-3 w-full md:w-[35%] border p-6 rounded-md bg-white shadow-sm"
       >
-        <div className="flex flex-col gap-1">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your name.."
-            required
-            className="p-2 outline-indigo-500 text-md border rounded"
-          />
-        </div>
-
         <div className="flex flex-col gap-1">
           <label htmlFor="Email">Email</label>
           <input
             type="email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email address"
             required
             className="p-2 outline-indigo-500 text-md border rounded"
@@ -62,10 +56,18 @@ const SignInPage = () => {
           <input
             type="password"
             name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password.."
             required
             className="p-2 outline-indigo-500 text-md border rounded"
           />
+        </div>
+
+        <div className="mt-2">
+          <Link href={"/auth/signup"} className="text-[16px]">
+            Dont have Account! <span className="text-indigo-500">Sign Up</span>{" "}
+          </Link>
         </div>
 
         <div className="mt-4 w-full">
@@ -73,7 +75,7 @@ const SignInPage = () => {
             type="submit"
             className="w-full p-2 text-white bg-indigo-500 rounded-md"
           >
-            Submit Detail
+            Login
           </button>
         </div>
       </form>
@@ -81,4 +83,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;
