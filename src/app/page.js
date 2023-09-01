@@ -1,10 +1,10 @@
 import React from 'react'
-import Nav from './components/Nav/page'
+import Hero from './components/Hero/page'
 
 const Home = () => {
   return (
-    <div>
-      <Nav />
+    <div className='w-full h-screen'>
+      <Hero/>
     </div>
   )
 }

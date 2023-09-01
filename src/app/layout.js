@@ -1,4 +1,5 @@
 import AuthProvider from './components/AuthProvider/page'
+import Nav from './components/Nav/page'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 
@@ -8,7 +9,7 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  title: 'Next Auth',
+  title: 'Grow With Ai',
   description: 'Developed by ~ Zain-ul-Abdin',
 }
 
@@ -17,7 +18,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={poppins.className}>
         <AuthProvider>
-          <div>
+          <div className='relative'>
+            <Nav/>
             {children}
           </div>
         </AuthProvider>

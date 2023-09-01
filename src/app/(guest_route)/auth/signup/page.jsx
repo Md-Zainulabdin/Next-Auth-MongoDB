@@ -32,7 +32,7 @@ const SignInPage = () => {
     <div className="w-full h-screen flex flex-col justify-center items-center gap-8 bg-[#fafafa]">
       <div className="title text-center">
         <h1 className="text-4xl font-semibold text-slate-800">
-          Create a <span className="text-indigo-400">Free Account</span>{" "}
+          Create a <span className="text-indigo-500">Free Account</span>{" "}
         </h1>
         <p className="text-md text-[#999] font-normal mt-2">
           ~ Lets take a deep dive in to the world of AI <br /> #GrowWithAi{" "}
