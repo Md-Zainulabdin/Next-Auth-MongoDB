@@ -9,8 +9,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSignIn = async (e) => {
-    e.preventDefault();
+  const onSignIn = async () => {
     if (!email && !password) return;
 
     try {

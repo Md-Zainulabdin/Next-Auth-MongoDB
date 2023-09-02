@@ -6,10 +6,11 @@ import { NextResponse } from "next/server";
 export const POST = async (req) => {
     try {
         const { email, password } = await req.json();
-        const hashedPassword = await hash(password, 10)
+        const hashedPassword = await hash(password, 10);
         await connectMongoDB();
         let user = await User.find({ email });
-        console.log("user", user);
+        const update = user[0].update({password: hashedPassword});
+        console.log(update);
 
         return NextResponse.json({
             message: "Password Updated"

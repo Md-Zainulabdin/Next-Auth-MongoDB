@@ -9,8 +9,7 @@ const ProfileCard = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const email = session?.user?.email;
 
     if (password !== confirmPassword) alert("Not Matched");
@@ -25,17 +24,16 @@ const ProfileCard = () => {
         },
         body: JSON.stringify({
           email,
+          password
         }),
       });
-
-        console.log("res", res.ok);
     } catch (error) {
       console.log("Error", error);
     }
   };
   return (
-    <div className="w-full md:w-[70%] h-full">
-      <div className="w-full h-full flex flex-col gap-3">
+    <div className="w-full md:w-[70%] border p-6">
+      <div className="w-full h-full flex flex-col gap-3 px-3">
         <div className="image-box">
           <Image
             src={"/profile.webp"}
@@ -54,7 +52,7 @@ const ProfileCard = () => {
         </div>
 
         <div className="change-password">
-          <form onSubmit={handleSubmit} className="flex gap-4 flex-col">
+          <form action={handleSubmit} className="flex gap-4 flex-col">
             <div className="flex flex-col gap-1">
               <label htmlFor="New Password">New Password</label>
               <input
