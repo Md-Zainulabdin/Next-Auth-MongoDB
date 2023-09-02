@@ -8,9 +8,12 @@ export const POST = async (req) => {
         const { email, password } = await req.json();
         const hashedPassword = await hash(password, 10);
         await connectMongoDB();
-        let user = await User.find({ email });
-        const update = user[0].update({password: hashedPassword});
-        console.log(update);
+        let user = await User.updateOne({ email }, {
+            $set: {
+                password: hashedPassword
+            }
+        });
+        console.log(user);
 
         return NextResponse.json({
             message: "Password Updated"

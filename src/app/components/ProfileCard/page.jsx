@@ -3,6 +3,7 @@ import { capitlize } from "@/libs/capitlizer";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useState } from "react";
+import UploadImageBtn from "../UploadImage/page";
 
 const ProfileCard = () => {
   const { data: session } = useSession();
@@ -34,15 +35,9 @@ const ProfileCard = () => {
   return (
     <div className="w-full md:w-[70%] border p-6">
       <div className="w-full h-full flex flex-col gap-3 px-3">
-        <div className="image-box">
-          <Image
-            src={"/profile.webp"}
-            width={180}
-            height={180}
-            alt="Profile Image"
-            priority
-            className="rounded-full"
-          />
+
+        <div className="upload-image">
+          <UploadImageBtn/>
         </div>
 
         <div className="username">
@@ -59,7 +54,7 @@ const ProfileCard = () => {
                 type="password"
                 name="new password"
                 placeholder="Enter new password.."
-                className="p-2 outline-indigo-400"
+                className="p-2 outline-indigo-400 border rounded-md"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -72,7 +67,7 @@ const ProfileCard = () => {
                 type="password"
                 name="confirm password"
                 placeholder="Enter confirm password.."
-                className="p-2 outline-indigo-400"
+                className="p-2 outline-indigo-400 border rounded-md"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
