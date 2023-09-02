@@ -1,17 +1,16 @@
-"use client"
+"use client";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
-  const {replace} = useRouter();
+  const { replace } = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const onSignIn = async () => {
 
-    console.log(email);
-
+  const onSignIn = async (e) => {
+    e.preventDefault();
     if (!email && !password) return;
 
     try {
@@ -21,15 +20,17 @@ const SignUpPage = () => {
         redirect: false,
       });
 
-      if (res.error === null) replace('/')
+      console.log(res);
 
- console.log(res);
+      if (res.error === null) replace("/");
+
+      console.log(res);
     } catch (error) {
       console.log("Error", error);
     }
   };
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center gap-8 bg-[#fafafa]">
+    <div className="w-full h-screen flex flex-col justify-center items-center gap-8">
       <div className="title text-center">
         <h1 className="text-4xl font-semibold text-slate-800">
           Login to <span className="text-indigo-500">Grow With Ai</span>

@@ -2,7 +2,9 @@ import React from 'react'
 
 const Explore = () => {
   return (
-    <div>Explore</div>
+    <div className='w-full h-screen flex justify-center items-center'>
+      <h1>Explore</h1>
+    </div>
   )
 }
 

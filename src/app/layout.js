@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       <body className={poppins.className}>
         <AuthProvider>
           <div className='relative'>
-            <Nav/>
+            <Nav />
             {children}
           </div>
         </AuthProvider>

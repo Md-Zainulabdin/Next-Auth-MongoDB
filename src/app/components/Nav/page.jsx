@@ -1,17 +1,25 @@
-"use client"
+"use client";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
-const Nav =  () => {
-  const {data: session, status} = useSession()
+const Nav = () => {
+  const { data: session, status } = useSession();
   return (
-    <div className="w-full h-[60px] absolute top-0 left-0">
+    <div className="w-full h-[60px] bg-white shadow-sm">
       <nav className="w-full h-full border-b flex justify-between items-center px-[50px]">
         <div className="logo text-2xl font-semibold text-slate-800">
-          <span className="text-indigo-500">Grow With</span> Ai
+          <Link href={"/"}>
+            <span className="text-indigo-500">Grow With</span> Ai
+          </Link>
         </div>
         <div className="menu flex gap-6 items-center">
+          {session && (
+            <Link href={"/Profile"} className="text-lg text-slate-700">
+              Profile
+            </Link>
+          )}
+
           <Link href={"/Explore"} className="text-lg text-slate-700">
             Explore
           </Link>
