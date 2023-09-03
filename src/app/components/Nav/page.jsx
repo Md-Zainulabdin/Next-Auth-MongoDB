@@ -14,12 +14,7 @@ const Nav = () => {
           </Link>
         </div>
         <div className="menu flex gap-6 items-center">
-          {session && (
-            <Link href={"/Profile"} className="text-lg text-slate-700">
-              Profile
-            </Link>
-          )}
-
+          
           <Link href={"/Explore"} className="text-lg text-slate-700">
             Explore
           </Link>

@@ -23,3 +23,11 @@ export const POST = async (req) => {
         );
     }
 }
+
+// export const GET = async () => {
+//     try {
+        
+//     } catch (error) {
+//         console.log("Failed to get User");
+//     }
+// }
