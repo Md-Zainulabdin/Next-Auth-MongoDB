@@ -9,6 +9,7 @@ const SignInPage = () => {
     let name = formData.get("name");
     let email = formData.get("email");
     let password = formData.get("password");
+    let image = "";
 
     if (!name && !password && !email) return;
 
@@ -18,11 +19,11 @@ const SignInPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, image }),
       });
 
       if (res.ok) {
-        redirect("auth/login");
+        redirect("/auth/login");
       }
     } catch (error) {
       console.log("error", error);

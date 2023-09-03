@@ -11,32 +11,22 @@ const UploadImageBtn = () => {
     imgRef.current.click();
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
-    setImage(file);
+    const base64 = await convertToBase64(file);
+    console.log(base64);
   };
   return (
     <>
       <div className="image-box">
-        {image ? (
-          <Image
-            src={URL.createObjectURL(image)}
-            width={180}
-            height={180}
-            alt="Profile Image"
-            priority
-            className="rounded-full"
-          />
-        ) : (
-          <Image
-            src={"/profile.webp"}
-            width={180}
-            height={180}
-            alt="Profile Image"
-            priority
-            className="rounded-full"
-          />
-        )}
+        <Image
+          src={image ? URL.createObjectURL(image) : "/profile.webp"}
+          width={180}
+          height={180}
+          alt="Profile Image"
+          priority
+          className="rounded-full"
+        />
       </div>
       <div onClick={handleImageClick}>
         <input
@@ -52,3 +42,17 @@ const UploadImageBtn = () => {
 };
 
 export default UploadImageBtn;
+
+
+function convertToBase64(file){
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
+}

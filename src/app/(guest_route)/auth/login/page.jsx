@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
       console.log(res);
 
-      if (res.error === null) replace("/");
+      if (res.error === null) replace("/Explore");
 
       console.log(res);
     } catch (error) {
